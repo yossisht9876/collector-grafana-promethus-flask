@@ -1,0 +1,19 @@
+# global config
+global:
+  scrape_interval:     40s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 40s # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+# A scrape configuration containing exactly one endpoint to scrape:
+scrape_configs:
+  - job_name: 'armis-site'
+    static_configs:
+      - targets: ['host.docker.internal:9000'] # the address of an application that exposes metrics for prometheus
+
+  - job_name: 'prometheus'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ['localhost:9090']
+
