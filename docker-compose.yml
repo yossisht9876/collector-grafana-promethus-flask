@@ -1,0 +1,38 @@
+version: "3.1"
+services:
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - <add local or remote path>:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - <add local or remote path>:/etc/grafana/grafana.ini
+      - <add local or remote path>:/etc/grafana/provisioning/datasources/datasource.yml
+      - <add local or remote path>:/etc/grafana/provisioning/dashboards/dashboards.yml
+    links:
+      - prometheus
+
+  collector:
+    image:  yossisht11/colector:0.0.4
+    container_name: collector
+    ports:
+      - "9000:9000"
+    links:
+      - prometheus
+
+  apiservice:
+    image:  yossisht11/apiservice:0.0.3
+    container_name: apiservice
+    ports:
+      - "5000:5000"
+    links:
+      - prometheus
