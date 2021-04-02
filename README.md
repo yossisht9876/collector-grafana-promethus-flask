@@ -1,5 +1,5 @@
 # collector-grafana-promethus-flask
-collect site metrics exporter and send to promethus - grafana
+python exporter to collect site metrics and send to promethus - grafana
 
 
 Docker-compose.yml:
@@ -27,4 +27,10 @@ will create 4 containers:
 4. grafana - dashbaords that will show the metrics
 
 ![grafana](https://user-images.githubusercontent.com/22144148/113360531-a03ebe80-9352-11eb-84ff-290f26bc3a8d.jpg)
+
+usege:
+
+1.clone the repo
+2.change the path to the VOLUME in the docker-compose file - in order to mount the config files
+3.docker-compose up -d
 
